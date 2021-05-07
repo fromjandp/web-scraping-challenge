@@ -1,9 +1,24 @@
-from flask import Flask, render_template, redirect
-from flask_pymongo import PyMongo
-import scrape_costa
+from splinter import Browser
+from bs4 import BeautifulSoup as soup
+import pandas as pd
+import time
+from webdriver_manager.chrome import ChromeDriverManager
+
+executable_path = {'executable_path': ChromeDriverManager().install()}
+browser = Browser('chrome', **executable_path, headless=False)
+
+url='https://redplanetscience.com/'
+browser.visit(url)
+html = browser.html
+new_soup = soup(html, 'html.parser')
+ 
+time.sleep(1)
 
 # Create an instance of Flask
 app = Flask(__name__)
+
+
+------------------------  REVISIT  ------------------------
 
 # Use PyMongo to establish Mongo connection
 mongo = PyMongo(app, uri="mongodb://localhost:27017/weather_app")
