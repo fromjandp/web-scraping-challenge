@@ -6,38 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Mission to Mars</title>
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
-<body class="text-black" style="background-color: light">
+<body class="text-black" style="background-color: white-space: inherit;">
     <div class="container">
 
         <div class="jumbotron text-center"
             style="background-image: url(https://news.aut.ac.nz/__data/assets/image/0006/92328/placeholder-image10.jpg); height: 400px; background-position: center; background-size: cover;">
+            
             <h1 class="display-3"><b>Mission to Mars</b></h1>
             <p><a class="btn btn-danger btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
         </div>
+
         <!-- NASA Mars News -->
         <div class="container">
             <div class="row" id="mars-news">
                 <div class="media">
                     <div class="media-body">
                         <h4>Latest Mars News</h4>
-                        <h5 style="color: #DC143C">{{mars.news_title}}</h5>
-                        <p style="color: #8B0000">{{mars.news_paragraph}}</p>
+                        <h5 style="color: royalblue">{{mars.news_title}}</h5>
+                        <p style="color: royalblue">{{mars.news_paragraph}}</p>
                     </div>
                 </div>
             </div>
         </div>
+
         <!-- JPL Mars Space Images - Featured Image -->
         <div class="container">
             <div class="row" id="mars-featured-image">
                 <div class="col-lg-8 col-md-8 col-sm-12">
                     <h4>Featured Mars Image</h4>
+
                     <!-- If Images are False/None/Non-Existent, Then Default to Error Message -->
-                    <img src="{{mars.featured_image | default('static/images/error.png', true) }}"
+                    <img src="{{mars.featured_image  }}"
                         class="img-responsive" style="max-width:100%; max-height: auto;" alt="Mars Featured Image" />
                 </div>
 
@@ -52,6 +57,7 @@
             </div>
         </div>
     </div>
+
     <!-- Mars Hemispheres -->
     <h4 style="padding-top: 50px; margin-top: 100px; text-align: center;">Mars Hemispheres</h4>
     <div class="card-deck">
@@ -61,6 +67,7 @@
                 {% for hemisphere in mars.hemispheres %}
                 <div class="col-md-6">
                     <div class="card text-white bg-danger" style="margin: 30px;">
+
                         <!-- If Images are False/None/Non-Existent, Then Default to Error Message -->
                         <img class="card-img-top"
                             src="{{hemisphere.img_url | default('static/images/error.png', true)}}" alt="..." />
@@ -74,6 +81,7 @@
         </div>
     </div>
     </div>
+    
     <!-- Bootstrap JavaScript -->
     <!-- jQuery, Popper.js & Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
