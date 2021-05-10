@@ -16,7 +16,7 @@ def scrape_all():
     mars_news(browser)
     featured_image(browser)
     mars_facts()
-    hemispheres(browser)
+   # hemispheres(browser)
 
     browser.quit()
 
@@ -79,44 +79,44 @@ def mars_facts():
     except BaseException:
         return None
 
-    df.columns = ["description", "value"]
+    df.columns = ["Description", "Value"]###?#
     data["facts"] = df.to_html(index=False)
 
     return
 
 
 # Mars Hemispheres
-def hemispheres(browser):
-    url = (
-        "https://astrogeology.usgs.gov/search/"
-        "results?q=hemisphere+enhanced&k1=target&v1=Mars"
-    )
+#def hemispheres(browser):
+#    url = (
+#        "https://astrogeology.usgs.gov/search/"
+#        "results?q=hemisphere+enhanced&k1=target&v1=Mars"
+#    )
 
-    browser.visit(url)
-    browser.is_element_present_by_text(
-        "USGS Astrogeology Science Center", wait_time=1)
+#    browser.visit(url)
+#    browser.is_element_present_by_text(
+#        "USGS Astrogeology Science Center", wait_time=1)#
 
-    hemisphere_image_urls = []
+#    hemisphere_image_urls = []
 
-    for i in range(4):
-        hemisphere = {}
+#    for i in range(4):
+#        hemisphere = {}
+#
+#        browser.find_by_css("a.product-item h3")[i].click()
+#        time.sleep(1)
 
-        browser.find_by_css("a.product-item h3")[i].click()
-        time.sleep(1)
+#        html = browser.html
+#        hemi_soup = bs(html, "html.parser")
 
-        html = browser.html
-        hemi_soup = bs(html, "html.parser")
+#        hemisphere['img_url'] = hemi_soup.find("a", text="Sample").get("href")
+#        hemisphere['title'] = hemi_soup.find("h2", class_="title").get_text()
 
-        hemisphere['img_url'] = hemi_soup.find("a", text="Sample").get("href")
-        hemisphere['title'] = hemi_soup.find("h2", class_="title").get_text()
+#        hemisphere_image_urls.append(hemisphere)
 
-        hemisphere_image_urls.append(hemisphere)
+#        browser.back()
 
-        browser.back()
+#    data["hemispheres"] = hemisphere_image_urls
 
-    data["hemispheres"] = hemisphere_image_urls
-
-    return
+#    return
 
 
 if __name__ == "__main__":
